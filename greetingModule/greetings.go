@@ -12,7 +12,8 @@ func Hello(name string) (string, error) {
 	if name == "" {
 		return "", errors.New("No name provided")
 	}
-	message := fmt.Sprintf(randomFormat(), name)
+	//message := fmt.Sprintf(randomFormat(), name)
+	message := fmt.Sprint(randomFormat())
 	// := declares a value and it's type in 1 line
 	/*
 		The long way of writing this same line is:
