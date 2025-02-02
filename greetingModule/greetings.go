@@ -35,9 +35,18 @@ func randomFormat() string {
 		// return a random message.
 		// random index for the slice of formats
 	return formats[rand.Intn(len(formats))]
-
-
 }
-	/* 
-		
-	*/
+
+func MultipleHellos(names []string) (map[string]string, error){
+			//map[key-type] value-type
+	messages := make(map[string]string)
+
+	for _, name := range names{
+		message,err := Hello(name)
+		if err != nil{
+			return nil, err
+		}
+		messages[name] = message
+	}
+	return messages,nil
+}
