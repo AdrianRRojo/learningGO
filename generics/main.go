@@ -1,5 +1,10 @@
 package main
 import "fmt"
+
+type Number interface{
+	int64 | float64
+}
+
 func main(){
 	ints := map[string]int64{
 		"first": 34,
@@ -12,6 +17,7 @@ func main(){
 	fmt.Printf("Non-Generic sums: %v and %v \n", SumInts(ints), SumFloats(floats))
 
 	fmt.Printf("Generic sums: %v and %v \n", SumIntsOrFloats(ints), SumIntsOrFloats(floats))
+	fmt.Printf("Type constraint: %v and %v \n", SumNumbers(ints), SumNumbers(floats))
 }
 // Non Generics
 func SumInts(m map[string]int64) int64{
@@ -52,4 +58,14 @@ func SumIntsOrFloats[K comparable, V int64 | float64](m map[K]V) V{
 	return s
 
 
+}
+
+func SumNumbers[K comparable, V Number](m map[K]V) V{
+
+	var s V
+	for _, V := range m{
+
+		s += V
+	}
+	return s
 }
